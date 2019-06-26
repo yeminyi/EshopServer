@@ -4,9 +4,17 @@ var express = require("express");
 var ws_1 = require("ws");
 var path = require("path");
 var app = express();
+// app.get('/',(req,res)=>{
+//     res.send("Hello Express");
+// })
+app.use(express.static('public'));
 
-app.use(express.static('client'));
+// http://expressjs.com/en/starter/basic-routing.html
+app.get('/', function(request, response) {
+  response.sendFile(__dirname + '/views/index.html');
+});
 
+// app.use('/', express.static(path.join(__dirname, '..', 'client')));
 var Product = /** @class */ (function () {
     function Product(id, title, price, rating, desc, categories) {
         this.id = id;
